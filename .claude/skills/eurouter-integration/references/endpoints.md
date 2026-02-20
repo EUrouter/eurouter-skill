@@ -12,8 +12,8 @@ OpenAI-compatible chat completions with streaming, tool calling, vision, audio, 
 
 ```json
 {
-  "model": "openai/gpt-4o",
-  "models": ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+  "model": "gpt-4o",
+  "models": ["gpt-4o", "claude-3-5-sonnet"],
   "rule_id": "uuid",
   "rule_name": "my-rule",
   "messages": [
@@ -46,7 +46,7 @@ OpenAI-compatible chat completions with streaming, tool calling, vision, audio, 
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `model` | `string` | No* | Model ID (e.g., `"openai/gpt-4o"`). *Required unless `models`, `rule_id`, or `rule_name` provides one. |
+| `model` | `string` | No* | Model ID (e.g., `"gpt-4o"`). *Required unless `models`, `rule_id`, or `rule_name` provides it. |
 | `models` | `string[]` | No | Fallback model list — tries each in order |
 | `rule_id` | `string (uuid)` | No | Routing rule ID to apply |
 | `rule_name` | `string` | No | Routing rule name to apply |
@@ -153,7 +153,7 @@ Supported audio formats: `wav`, `mp3`, `flac`, `m4a`, `ogg`, `pcm16`, `pcm24`
 
 ### Reasoning Parameters
 
-For reasoning models (e.g., `openai/o1`, `anthropic/claude-3-5-sonnet` with extended thinking):
+For reasoning models (e.g., `o1`, `claude-3-5-sonnet` with extended thinking):
 
 ```json
 {
@@ -201,7 +201,7 @@ For reasoning models (e.g., `openai/o1`, `anthropic/claude-3-5-sonnet` with exte
   "id": "chatcmpl-abc123",
   "object": "chat.completion",
   "created": 1700000000,
-  "model": "openai/gpt-4o",
+  "model": "gpt-4o",
   "system_fingerprint": "fp_abc123",
   "choices": [
     {
@@ -239,7 +239,7 @@ Finish reasons: `"stop"`, `"length"`, `"tool_calls"`, `"content_filter"`, `"erro
   "id": "chatcmpl-abc123",
   "object": "chat.completion.chunk",
   "created": 1700000000,
-  "model": "openai/gpt-4o",
+  "model": "gpt-4o",
   "choices": [
     {
       "index": 0,
@@ -262,7 +262,7 @@ Legacy text completion endpoint (prompt in, text out).
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `model` | `string` | Yes | Model ID (e.g., `"openai/gpt-3.5-turbo-instruct"`) |
+| `model` | `string` | Yes | Model ID (e.g., `"gpt-3.5-turbo-instruct"`) |
 | `prompt` | `string` | Yes | The text prompt |
 | `models` | `string[]` | No | Fallback model list |
 | `provider` | `ProviderPreferences` | No | Provider routing preferences |
@@ -286,7 +286,7 @@ Legacy text completion endpoint (prompt in, text out).
   "id": "cmpl-abc123",
   "object": "text_completion",
   "created": 1700000000,
-  "model": "openai/gpt-3.5-turbo-instruct",
+  "model": "gpt-3.5-turbo-instruct",
   "choices": [
     {
       "text": "Generated text here...",
@@ -312,7 +312,7 @@ OpenAI-compatible embeddings endpoint.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `model` | `string` | Yes | Model ID (e.g., `"openai/text-embedding-3-small"`) |
+| `model` | `string` | Yes | Model ID (e.g., `"text-embedding-3-small"`) |
 | `input` | `string \| string[]` | Yes | Text to embed (single string or array) |
 | `encoding_format` | `"float" \| "base64"` | No | Output format (default: `"float"`) |
 | `dimensions` | `number` | No | Output dimensions (only some models support this) |
@@ -333,7 +333,7 @@ OpenAI-compatible embeddings endpoint.
       "index": 0
     }
   ],
-  "model": "openai/text-embedding-3-small",
+  "model": "text-embedding-3-small",
   "usage": {
     "prompt_tokens": 8,
     "total_tokens": 8
@@ -376,8 +376,7 @@ List available models. **No authentication required.**
 {
   "data": [
     {
-      "id": "openai/gpt-4o",
-      "canonical_slug": "openai/gpt-4o",
+      "id": "gpt-4o",
       "name": "GPT-4o",
       "description": "...",
       "context_length": 128000,

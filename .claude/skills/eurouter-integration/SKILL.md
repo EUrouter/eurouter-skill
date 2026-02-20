@@ -50,7 +50,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="openai/gpt-4o",  # Note: prefix with provider name
+    model="gpt-4o",
     messages=[{"role": "user", "content": "Hello!"}]
 )
 ```
@@ -65,12 +65,12 @@ const client = new OpenAI({
 });
 
 const response = await client.chat.completions.create({
-  model: "openai/gpt-4o",  // Note: prefix with provider name
+  model: "gpt-4o",
   messages: [{ role: "user", content: "Hello!" }],
 });
 ```
 
-**Important:** Model names use `provider/model-name` format (e.g., `openai/gpt-4o`, `anthropic/claude-3-5-sonnet`, `mistral/mistral-large`). This is the most common gotcha when migrating.
+**Important:** All existing OpenAI model names work as-is (e.g., `gpt-4o`, `claude-3-5-sonnet`, `mistral-large`). No model name changes needed when migrating.
 
 ---
 
@@ -101,7 +101,7 @@ This is EUrouter's key differentiator. Add a `provider` object to any generation
 
 ```json
 {
-  "model": "openai/gpt-4o",
+  "model": "gpt-4o",
   "messages": [{"role": "user", "content": "Hello"}],
   "provider": {
     "data_residency": "eu",
@@ -142,7 +142,7 @@ Pass a `models` array to try multiple models in order. If all providers for the 
 
 ```json
 {
-  "models": ["anthropic/claude-3-5-sonnet", "openai/gpt-4o", "mistral/mistral-large"],
+  "models": ["claude-3-5-sonnet", "gpt-4o", "mistral-large"],
   "messages": [{"role": "user", "content": "Hello"}],
   "provider": { "data_residency": "eu" }
 }
@@ -171,7 +171,7 @@ Create reusable routing configurations to avoid repeating provider preferences o
 
 // Then reference it by name:
 {
-  "model": "openai/gpt-4o",
+  "model": "gpt-4o",
   "rule_name": "gdpr-strict",
   "messages": [{"role": "user", "content": "Hello"}]
 }
@@ -194,7 +194,7 @@ GET /api/v1/models?supported_parameters=tools,vision
 GET /api/v1/models?category=embedding
 ```
 
-Model IDs use `provider/model-name` format (e.g., `openai/gpt-4o`). Prices are returned as strings in the model's `pricing` object with a `currency` field. Credits are in EUR.
+Prices are returned as strings in the model's `pricing` object with a `currency` field. Credits are in EUR.
 
 ---
 

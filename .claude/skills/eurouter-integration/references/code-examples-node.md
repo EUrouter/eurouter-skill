@@ -16,8 +16,7 @@ const client = new OpenAI({
 });
 
 const response = await client.chat.completions.create({
-  model: "openai/gpt-4o", // Models use provider/model-name format
-  messages: [{ role: "user", content: "What is GDPR?" }],
+  model: "gpt-4o",  messages: [{ role: "user", content: "What is GDPR?" }],
 });
 
 console.log(response.choices[0].message.content);
@@ -36,7 +35,7 @@ const client = new OpenAI({
 });
 
 const response = await client.chat.completions.create({
-  model: "openai/gpt-4o",
+  model: "gpt-4o",
   messages: [
     { role: "system", content: "You are a GDPR compliance assistant." },
     { role: "user", content: "Explain data subject rights under GDPR." },
@@ -70,7 +69,7 @@ const client = new OpenAI({
 });
 
 const stream = await client.chat.completions.create({
-  model: "anthropic/claude-3-5-sonnet",
+  model: "claude-3-5-sonnet",
   messages: [{ role: "user", content: "Write a poem about Europe." }],
   stream: true,
   stream_options: { include_usage: true },
@@ -127,7 +126,7 @@ const tools: OpenAI.ChatCompletionTool[] = [
 
 // First call: model decides to use the tool
 const response = await client.chat.completions.create({
-  model: "openai/gpt-4o",
+  model: "gpt-4o",
   messages: [{ role: "user", content: "What's the weather in Berlin?" }],
   tools,
   tool_choice: "auto",
@@ -147,7 +146,7 @@ if (message.tool_calls) {
 
   // Second call: send tool result back
   const followUp = await client.chat.completions.create({
-    model: "openai/gpt-4o",
+    model: "gpt-4o",
     messages: [
       { role: "user", content: "What's the weather in Berlin?" },
       message,
@@ -179,7 +178,7 @@ const client = new OpenAI({
 });
 
 const response = await client.chat.completions.create({
-  model: "openai/gpt-4o",
+  model: "gpt-4o",
   messages: [
     {
       role: "user",
@@ -216,7 +215,7 @@ const client = new OpenAI({
 });
 
 const response = await client.embeddings.create({
-  model: "openai/text-embedding-3-small",
+  model: "text-embedding-3-small",
   input: ["GDPR compliance is important for EU businesses."],
   // Note: model fallback (models array) is NOT supported for embeddings
 });
@@ -240,13 +239,13 @@ const client = new OpenAI({
 
 // If the first model's providers all fail, EUrouter tries the next model
 const response = await client.chat.completions.create({
-  model: "anthropic/claude-3-5-sonnet", // Primary model
+  model: "claude-3-5-sonnet", // Primary model
   messages: [{ role: "user", content: "Explain quantum computing simply." }],
   // @ts-expect-error EUrouter-specific fields
   models: [
-    "anthropic/claude-3-5-sonnet",
-    "openai/gpt-4o",
-    "mistral/mistral-large",
+    "claude-3-5-sonnet",
+    "gpt-4o",
+    "mistral-large",
   ],
   provider: {
     data_residency: "eu",
@@ -271,7 +270,7 @@ const client = new OpenAI({
 // Reference a pre-configured routing rule by name
 // (Create routing rules via POST /api/v1/routing-rules)
 const response = await client.chat.completions.create({
-  model: "openai/gpt-4o",
+  model: "gpt-4o",
   messages: [{ role: "user", content: "Hello!" }],
   // @ts-expect-error EUrouter-specific field
   rule_name: "gdpr-strict",
@@ -310,8 +309,8 @@ const response = await fetch("https://api.eurouter.ai/api/v1/routing-rules", {
   body: JSON.stringify({
     name: "production-eu",
     description: "Production routing: EU only, cheapest price",
-    model: "openai/gpt-4o",
-    models: ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+    model: "gpt-4o",
+    models: ["gpt-4o", "claude-3-5-sonnet"],
     provider: {
       data_residency: "eu",
       eu_owned: true,

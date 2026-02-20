@@ -16,8 +16,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="openai/gpt-4o",  # Models use provider/model-name format
-    messages=[{"role": "user", "content": "What is GDPR?"}],
+    model="gpt-4o",    messages=[{"role": "user", "content": "What is GDPR?"}],
 )
 
 print(response.choices[0].message.content)
@@ -36,7 +35,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="openai/gpt-4o",
+    model="gpt-4o",
     messages=[
         {"role": "system", "content": "You are a GDPR compliance assistant."},
         {"role": "user", "content": "Explain data subject rights under GDPR."},
@@ -74,7 +73,7 @@ client = OpenAI(
 )
 
 stream = client.chat.completions.create(
-    model="anthropic/claude-3-5-sonnet",
+    model="claude-3-5-sonnet",
     messages=[{"role": "user", "content": "Write a poem about Europe."}],
     stream=True,
     stream_options={"include_usage": True},
@@ -129,7 +128,7 @@ tools = [
 
 # First call: model decides to use the tool
 response = client.chat.completions.create(
-    model="openai/gpt-4o",
+    model="gpt-4o",
     messages=[{"role": "user", "content": "What's the weather in Berlin?"}],
     tools=tools,
     tool_choice="auto",
@@ -148,7 +147,7 @@ if message.tool_calls:
 
     # Second call: send tool result back
     follow_up = client.chat.completions.create(
-        model="openai/gpt-4o",
+        model="gpt-4o",
         messages=[
             {"role": "user", "content": "What's the weather in Berlin?"},
             message.model_dump(),
@@ -177,7 +176,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="openai/gpt-4o",
+    model="gpt-4o",
     messages=[
         {
             "role": "user",
@@ -213,7 +212,7 @@ client = OpenAI(
 )
 
 response = client.embeddings.create(
-    model="openai/text-embedding-3-small",
+    model="text-embedding-3-small",
     input=["GDPR compliance is important for EU businesses."],
     # Note: model fallback (models array) is NOT supported for embeddings
     extra_body={
@@ -242,13 +241,13 @@ client = OpenAI(
 
 # If the first model's providers all fail, EUrouter tries the next model
 response = client.chat.completions.create(
-    model="anthropic/claude-3-5-sonnet",  # Primary model
+    model="claude-3-5-sonnet",  # Primary model
     messages=[{"role": "user", "content": "Explain quantum computing simply."}],
     extra_body={
         "models": [
-            "anthropic/claude-3-5-sonnet",
-            "openai/gpt-4o",
-            "mistral/mistral-large",
+            "claude-3-5-sonnet",
+            "gpt-4o",
+            "mistral-large",
         ],
         "provider": {
             "data_residency": "eu",
@@ -279,7 +278,7 @@ client = OpenAI(
 # Reference a pre-configured routing rule by name
 # (Create routing rules via POST /api/v1/routing-rules)
 response = client.chat.completions.create(
-    model="openai/gpt-4o",
+    model="gpt-4o",
     messages=[{"role": "user", "content": "Hello!"}],
     extra_body={
         "rule_name": "gdpr-strict",  # Your routing rule name
@@ -321,8 +320,8 @@ response = httpx.post(
     json={
         "name": "production-eu",
         "description": "Production routing: EU only, cheapest price",
-        "model": "openai/gpt-4o",
-        "models": ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+        "model": "gpt-4o",
+        "models": ["gpt-4o", "claude-3-5-sonnet"],
         "provider": {
             "data_residency": "eu",
             "eu_owned": True,

@@ -28,8 +28,8 @@ Create a routing rule.
   "description": "Strict GDPR compliance for production",
   "scope": "org",
   "org_id": "uuid",
-  "model": "openai/gpt-4o",
-  "models": ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+  "model": "gpt-4o",
+  "models": ["gpt-4o", "claude-3-5-sonnet"],
   "provider": {
     "eu_owned": true,
     "data_collection": "deny",
@@ -63,8 +63,8 @@ Create a routing rule.
     "user_id": "user-id",
     "org_id": "uuid",
     "api_key_id": null,
-    "model": "openai/gpt-4o",
-    "models": ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+    "model": "gpt-4o",
+    "models": ["gpt-4o", "claude-3-5-sonnet"],
     "provider": { ... },
     "enabled": true,
     "created_at": "2025-01-15T10:30:00.000Z",
@@ -117,7 +117,7 @@ All fields optional:
 {
   "name": "new-name",
   "description": "Updated description",
-  "model": "anthropic/claude-3-5-sonnet",
+  "model": "claude-3-5-sonnet",
   "models": null,
   "provider": { "data_residency": "eu" },
   "enabled": false
@@ -150,8 +150,8 @@ Test a routing configuration without making a real request. See which providers 
 {
   "rule_id": "uuid",
   "rule_name": "gdpr-strict",
-  "model": "openai/gpt-4o",
-  "models": ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+  "model": "gpt-4o",
+  "models": ["gpt-4o", "claude-3-5-sonnet"],
   "preference_overrides": {
     "data_residency": "eu",
     "eu_owned": true
@@ -189,12 +189,12 @@ At least one of `rule_id`, `rule_name`, `preference_overrides`, `model`, or `mod
     },
     "results": [
       {
-        "model": "openai/gpt-4o",
+        "model": "gpt-4o",
         "provider_count": 2,
         "providers": ["scaleway", "ovhcloud"]
       },
       {
-        "model": "anthropic/claude-3-5-sonnet",
+        "model": "claude-3-5-sonnet",
         "provider_count": 1,
         "providers": ["scaleway"]
       }

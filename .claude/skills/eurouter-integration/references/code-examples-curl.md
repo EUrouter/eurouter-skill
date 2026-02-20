@@ -27,7 +27,7 @@ curl https://api.eurouter.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "model": "openai/gpt-4o",
+    "model": "gpt-4o",
     "messages": [
       {"role": "user", "content": "What is GDPR?"}
     ]
@@ -43,7 +43,7 @@ curl https://api.eurouter.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "model": "openai/gpt-4o",
+    "model": "gpt-4o",
     "messages": [
       {"role": "system", "content": "You are a GDPR compliance assistant."},
       {"role": "user", "content": "Explain data subject rights."}
@@ -68,7 +68,7 @@ curl -N https://api.eurouter.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "model": "anthropic/claude-3-5-sonnet",
+    "model": "claude-3-5-sonnet",
     "messages": [
       {"role": "user", "content": "Write a haiku about the EU."}
     ],
@@ -91,7 +91,7 @@ curl https://api.eurouter.ai/api/v1/embeddings \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "model": "openai/text-embedding-3-small",
+    "model": "text-embedding-3-small",
     "input": ["GDPR compliance is important for EU businesses."],
     "provider": {
       "data_residency": "eu"
@@ -139,7 +139,7 @@ curl https://api.eurouter.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "model": "openai/gpt-4o",
+    "model": "gpt-4o",
     "rule_name": "gdpr-strict",
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
@@ -156,7 +156,7 @@ curl https://api.eurouter.ai/api/v1/routing-rules/dry-run \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "models": ["openai/gpt-4o", "anthropic/claude-3-5-sonnet"],
+    "models": ["gpt-4o", "claude-3-5-sonnet"],
     "preference_overrides": {
       "data_residency": "eu",
       "eu_owned": true
@@ -184,7 +184,7 @@ curl -i https://api.eurouter.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "x-api-key: eur_YOUR_KEY_HERE" \
   -d '{
-    "model": "openai/gpt-4o",
+    "model": "gpt-4o",
     "messages": [{"role": "user", "content": "Hello"}],
     "provider": {"data_residency": "eu"}
   }'
@@ -193,7 +193,7 @@ curl -i https://api.eurouter.ai/api/v1/chat/completions \
 Look for these headers:
 ```
 x-provider-slug: scaleway
-x-model-used: openai/gpt-4o
+x-model-used: gpt-4o
 x-routing-strategy: lowest-cost
 x-fallback-count: 0
 ```
