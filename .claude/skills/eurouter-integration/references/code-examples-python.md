@@ -185,7 +185,7 @@ response = client.chat.completions.create(
                 {
                     "type": "image_url",
                     "image_url": {
-                        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1200px-Flag_of_Europe.svg.png",
+                        "url": "https://example.com/your-image.png",
                         "detail": "auto",
                     },
                 },
@@ -247,7 +247,7 @@ response = client.chat.completions.create(
         "models": [
             "claude-3-5-sonnet",
             "gpt-4o",
-            "mistral-large",
+            "mistral-large-3",
         ],
         "provider": {
             "data_residency": "eu",

@@ -70,7 +70,7 @@ const response = await client.chat.completions.create({
 });
 ```
 
-**Important:** All existing OpenAI model names work as-is (e.g., `gpt-4o`, `claude-3-5-sonnet`, `mistral-large`). No model name changes needed when migrating.
+**Important:** All existing OpenAI model names work as-is (e.g., `gpt-4o`, `claude-3-5-sonnet`, `mistral-large-3`). No model name changes needed when migrating.
 
 ---
 
@@ -142,7 +142,7 @@ Pass a `models` array to try multiple models in order. If all providers for the 
 
 ```json
 {
-  "models": ["claude-3-5-sonnet", "gpt-4o", "mistral-large"],
+  "models": ["claude-3-5-sonnet", "gpt-4o", "mistral-large-3"],
   "messages": [{"role": "user", "content": "Hello"}],
   "provider": { "data_residency": "eu" }
 }
